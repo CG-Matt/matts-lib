@@ -3,7 +3,7 @@
 	"version": "0.5.2",
 	"title": "Matt's Library",
 	"author": "CG-Matt",
-	"homepage": "",
+	"homepage": "https://github.com/CG-Matt/matts-lib",
 	"description": "Library mod that is used by my other mods",
 	"factorio_version": "1.1",
 	"dependencies": ["base >= 0.17"]
