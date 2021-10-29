@@ -1,0 +1,49 @@
+Version: 0.5.2
+Date: ??.05.2021
+  Functions:
+    - Updated the functions to now show the ore icon beside the ore name in the map creation menu like the vanilla ores do
+---------------------------------------------------------------------------------------------------
+Version: 0.5.1
+Date: 25.05.2021
+  Functions:
+    - A minor improvement to the functions have been made to improve readability, this won't affect an already existing content using these function
+  General:
+    - The README file has been updated
+    - Mod description has been updated
+---------------------------------------------------------------------------------------------------
+Version: 0.5.0
+Date: 13.04.2021
+  Compatibility:
+    - Updated to Factorio version 1.1
+    - Old functions have now been removed
+---------------------------------------------------------------------------------------------------
+Version: 0.4.0
+Date: 28.09.2020
+  Compatibility:
+    - Updated to Factorio version 1.0
+  New Functions:
+    - New improved functions have been added, please see "readme" file if you're interested in using the functions  
+  Texture:
+    - All ore graphics have been removed
+  Important Note:
+    - Old functions are currently left in for compatibility reasons, if anyone is using my functions in their mods please switch over to the new functions before the next mod update as the old functions will be removed
+---------------------------------------------------------------------------------------------------
+Version: 0.3.0
+Date: 08.03.2020
+  Compatibity:
+    - Updated to Factorio version 0.18
+  General:
+    - Changed author name to match my new name
+---------------------------------------------------------------------------------------------------
+Version: 0.2.0
+Date: 16.11.2019
+  Major Changes:
+    - All functions have been updated
+    - matts_ore_gen_full function has been removed
+    - Ore graphics have now been separated into sub-folders
+
+---------------------------------------------------------------------------------------------------
+Version: 0.1.0
+Date: 9.11.2019
+  General:
+    - Mod Released
