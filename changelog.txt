@@ -1,7 +1,9 @@
 Version: 0.5.2
-Date: ??.05.2021
+Date: 29.10.2021
   Functions:
     - Updated the functions to now show the ore icon beside the ore name in the map creation menu like the vanilla ores do
+  General:
+    - Added a github page for the mod
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.1
 Date: 25.05.2021
