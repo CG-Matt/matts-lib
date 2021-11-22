@@ -44,11 +44,11 @@ The new format follows a more vanilla-ish approach to ore generation
   * mod_name -> Name of your mod e.g. matts-lib (not required if using custom graphic paths)
   * icon_path ->Specifies the folder in which your ore icon graphic is located (not required if using default path: "graphics/icons")
   * ore_path -> Specifies the folder in which your ore entity graphics are located (not required if using default path: "graphics/entity")
-  * prefix -> Specifies a prefix for the ore internal names, can be useful if creating an ore that is common among other mods but want to avoid conflict(optional)
-  * custom_paths -> Set to true if you wish to use custom graphic paths that dont follow the structure specified in this mod(optional)
-  * custom_icon_path -> Specifies the custom path for the ore icon(required if using custom_paths)
-  * custom_ore_path -> Specifies the custom path for the ore entity(required if using custom_paths)
-  * custom_hr_ore_path -> Specifies the custom path for the high resolution ore entity(required if using custom_paths)
+  * prefix -> Specifies a prefix for the ore internal names, can be useful if creating an ore that is common among other mods but want to avoid conflict (optional)
+  * custom_paths -> Set to true if you wish to use custom graphic paths that dont follow the structure specified in this mod (optional)
+  * custom_icon_path -> Specifies the custom path for the ore icon (required if using custom_paths)
+  * custom_ore_path -> Specifies the custom path for the ore entity (required if using custom_paths)
+  * custom_hr_ore_path -> Specifies the custom path for the high resolution ore entity (required if using custom_paths)
 
 * Valid values for ore_properties:
   * name -> The name of the ore
