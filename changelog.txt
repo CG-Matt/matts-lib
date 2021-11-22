@@ -1,3 +1,10 @@
+Version: 0.5.3
+Date: 22.11.2021
+  Functions:
+    - Added a new function "matts_generation_ore" which works more like the vanilla ore generation function, read the readme file for more info
+  General:
+    - Updated readme.md
+---------------------------------------------------------------------------------------------------
 Version: 0.5.2
 Date: 29.10.2021
   Functions:
