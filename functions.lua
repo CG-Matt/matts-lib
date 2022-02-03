@@ -52,8 +52,8 @@ function matts_generation_ore(mod_properties, ore_properties, autoplace_properti
 			-- mining_particle = 
 			mining_time = ore_properties.mining_time,
 			result = ore_properties.result,
-			mining_fluid = ore_properties.fluid,
-			mining_fluid_amount = ore_properties.fluid_amount
+			required_fluid = ore_properties.fluid,
+			fluid_amount = ore_properties.fluid_amount
 		},
 		-- walking_sound = 
 		collision_box = {{-0.1, -0.1},{0.1, 0.1}},

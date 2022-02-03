@@ -54,6 +54,7 @@ The new format follows a more vanilla-ish approach to ore generation
   * name -> The name of the ore
   * order -> Specifies the order in which your ore should be placed
   * map_color -> Specifies the map color of the ore
+  * category -> Sets the category of a resource (optional)
   * mining_time -> Changes the mining tme from the default of 1 (optional)
   * result -> Makes the mining result different from the ore name (optional)
   * fluid -> Specifies the fluid needed for mining (optional)

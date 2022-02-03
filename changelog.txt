@@ -1,3 +1,10 @@
+Version: 0.5.4
+Date: 03.02.2022
+  Functions:
+    - Updated "matts_generation_ore" function to handle mining fluid correctly and also added the ability to configure the "category" of a resource
+    General:
+    - Updated readme.md
+---------------------------------------------------------------------------------------------------
 Version: 0.5.3
 Date: 22.11.2021
   Functions:
