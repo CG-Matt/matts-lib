@@ -8,60 +8,76 @@ A library mod that provides necessary functions for most of my mods.
 
 If you are interested in using my mods functions for ore generation please read the following:
 
-* matts_oregen_apc -> Autopalce control
-* matts_oregen_nl -> Noise Layer
-* matts_oregen_ore -> Ore entity
-* matts_oregen_item -> Ore item
-* matts_generation_ore -> Ore entity (New)
+Begin by including the following at the top of the file which you will use the functions in: ```local x = require("__matts-lib/resource_generation")```, where ```x``` can be any name that you would like.
+Then the following functions will be available to you:
 
-### The following only applies when using the old functions
+* ```x.item(...)``` - Resource Item
+* ```x.autoplace(...)``` - Autopalce Control
+* ```x.add_resource_to_planet(...)``` - Add Resource To Planet
+* ```x.ore(...)``` - Ore entity
 
-Translations:
+### Resource Generation Functions
 
-* ore -> Internal ore name, eg. "gold-ore"
-* order -> Used for internal ordering of items, entities etc. eg. "a-b-c"
-* mod -> Refers to your internal mod name, eg. "matts-lib", please note that the version of the mod is not used
-* colour -> The map screen colour of your ore, eg. "{r=0.84, g=0.83, b=0.18}", please note that the values for the colours range from 0 to 1 with a maximum of 3 decimal places
-* mining_time -> The mining time multiplier for the ore, set to 1 for default mining time
-* starting_area_amount -> The amount of ore to appear in the starting area
-* mining_fluid -> OPTIONAL VALUE, name of the fluid required to mine the ore eg. "sulfuric-acid"
-* mining_fluid_amount -> OPTIONAL VALUE, numerical amount of fluid required to mine the ore eg. "10"
+* ```item(mod_name, ore_name, order, stack_size, subgroup)```:
+  * mod_name - Internal name of the mod to which this resource will belong to.
+  * ore_name - Internal name of the ore item.
+  * order - Used for internal ordering of items.
+  * stack_size - The amount that the item should stack to.
+  * subgroup - Used for internal grouping of items.
 
-Icons/Sprite sheets:
+* ```autoplace(resource, order)```:
+  * resource - Internal name of the resource to create the autoplace for.
+  * order - Used for internal ordering of items.
 
-* When making icons/sprite sheets for your mod that will be used for ore icons please follow these instructions:
-  1. Ore icon VARIANTS must be located under 'your mod name'/graphics/icons/ore/'ore name', and must be named "1.png", "2.png", "3.png" and "4.png".
-  2. Ore SPRITESHEETS must be located under 'your mod name'/graphics/entity/ores/'ore name', and must be named "ore.png" and "hr-ore.png"
-* Please also note that all functions are INDEPENDENT of each other and can be used separately if only some functions are required.
-* For any further questions please start a discussion on the mod page.
+* ```add_resource_to_planet(resource, planet)```:
+  * resource - Internal name of the resource to create the autoplace for.
+  * planet - Internal name of the planet on which you want this resource to appear.
 
-### The following only applies when using the new functions
+* ```ore(mod_properties, ore_properties, autoplace_properties)```:
+  * mod_properties - A table containing the following entries:
+    * mod_name - Name of the mod to which the ore will belong.
+    * icon_path - Specifies the folder in which your ore icon graphic is located (not required if using default path: "graphics/icons")
+    * ore_path - Specifies the folder in which your ore entity graphics are located (not required if using default path: "graphics/entity")
+    * prefix - Specifies a prefix for the ore internal names, can be useful if creating an ore that is common among other mods but want to avoid conflict (optional)
+    * custom_paths - Set to true if you wish to use custom graphic paths that dont follow the structure specified in this mod (optional)
+    * custom_icon_path - Specifies the custom path for the ore icon (required if using custom_paths)
+    * custom_ore_path - Specifies the custom path for the ore entity (required if using custom_paths)
+    * custom_hr_ore_path - Specifies the custom path for the high resolution ore entity (required if using custom_paths)
+  * ore_properties - A table containing the following entries:
+    * name - The name of the ore
+    * order - Specifies the order in which your ore should be placed
+    * map_color - Specifies the map color of the ore
+    * category - Sets the category of a resource (optional)
+    * mining_time - Changes the mining time from the default of 1 (optional)
+    * result - Makes the mining result different from the ore name (optional)
+    * fluid - Specifies the fluid needed for mining (optional)
+    * fluid_amount - Specifies the amount of fluid needed for mining (optional, default is 10)
+  * autoplace_properties - A table containing the following entries:
+    * base_density - The base amount of the ore patch sizes before multipliers
+    * in_starting_area - Does the resource spawn in the starting area? (optional, false by default)
+    * regular_multiplier - The multiplier for ore amount outside of the starting area (optional, default is 1)
+    * starting_area_multiplier - The multiplier for ore amount inside the starting area (optional, default is 1.1)
 
-Function format -> matts_generation_ore(mod_properties(as dictionary), ore_properties(as dictionary), autoplace_properties(as dictionary))
-The new format follows a more vanilla-ish approach to ore generation
+### Example Code
+This code gives an example of how to use the ore generation function:
+```lua
+local matts_resource_gen = require("__matts-lib__/resource_generation")
 
-* Valid values for mod_properties:
-  * mod_name -> Name of your mod e.g. matts-lib (not required if using custom graphic paths)
-  * icon_path ->Specifies the folder in which your ore icon graphic is located (not required if using default path: "graphics/icons")
-  * ore_path -> Specifies the folder in which your ore entity graphics are located (not required if using default path: "graphics/entity")
-  * prefix -> Specifies a prefix for the ore internal names, can be useful if creating an ore that is common among other mods but want to avoid conflict (optional)
-  * custom_paths -> Set to true if you wish to use custom graphic paths that dont follow the structure specified in this mod (optional)
-  * custom_icon_path -> Specifies the custom path for the ore icon (required if using custom_paths)
-  * custom_ore_path -> Specifies the custom path for the ore entity (required if using custom_paths)
-  * custom_hr_ore_path -> Specifies the custom path for the high resolution ore entity (required if using custom_paths)
-
-* Valid values for ore_properties:
-  * name -> The name of the ore
-  * order -> Specifies the order in which your ore should be placed
-  * map_color -> Specifies the map color of the ore
-  * category -> Sets the category of a resource (optional)
-  * mining_time -> Changes the mining tme from the default of 1 (optional)
-  * result -> Makes the mining result different from the ore name (optional)
-  * fluid -> Specifies the fluid needed for mining (optional)
-  * fluid_amount -> Specifies the amount of fluid needed for mining (optional, default is 10)
-
-* Valid values for autoplace_properties:
-  * base_density -> The base amount of the ore patch sizes before multipliers
-  * in_starting_area -> Does the resource spawn in the starting area? (optional, false by default)
-  * regular_multiplier -> The multiplier for ore amount outside of the starting area (optional, default is 1)
-  * starting_area_multiplier -> The multiplier for ore amount inside the starting area (optional, default is 1.1)
+matts_resource_gen.item("example-mod", "example-ore", "a-a", 50, "raw-resource")
+matts_resource_gen.add_resource_to_planet("example-ore", "nauvis")
+matts_resource_gen.autoplace("example-ore", "a-a")
+matts_resource_gen.ore(
+  {
+    mod_name = "example-mod",
+    ore_path = "graphics/entity/resources"
+  },
+  {
+    name = "example-ore",
+    order = "b",
+    map_color = {r=0.5, g=0.5, b=0.5},
+  },
+  {
+    base_density = 5
+  }
+)
+```

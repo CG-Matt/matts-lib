@@ -1,8 +1,18 @@
+Version: 0.6.0
+Date: 04.12.2024
+  Functions:
+    - Functions have been moved to a new lua file "resource_generation.lua" which now needs to be included to make them avialable, read the readme file for more info
+    - Added a new function "add_resource_to_planet" which makes the desired resource available on the specified planet, read the readme file for more info
+  Compatibility:
+    - Updated to Factorio version 2.0
+  General:
+    - Updated readme.md
+---------------------------------------------------------------------------------------------------
 Version: 0.5.4
 Date: 03.02.2022
   Functions:
     - Updated "matts_generation_ore" function to handle mining fluid correctly and also added the ability to configure the "category" of a resource
-    General:
+  General:
     - Updated readme.md
 ---------------------------------------------------------------------------------------------------
 Version: 0.5.3
