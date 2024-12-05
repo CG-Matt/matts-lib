@@ -8,7 +8,7 @@ A library mod that provides necessary functions for most of my mods.
 
 If you are interested in using my mods functions for ore generation please read the following:
 
-Begin by including the following at the top of the file which you will use the functions in: ```local x = require("__matts-lib/resource_generation")```, where ```x``` can be any name that you would like.
+Begin by including the following at the top of the file which you will use the functions in: ```local x = require("__matts-lib__/resource_generation")```, where ```x``` can be any name that you would like.
 Then the following functions will be available to you:
 
 * ```x.item(...)``` - Resource Item
