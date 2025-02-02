@@ -8,13 +8,12 @@ A library mod that provides necessary functions for most of my mods.
 
 If you are interested in using my mods functions for ore generation please read the following:
 
-Begin by including the following at the top of the file which you will use the functions in: ```local x = require("__matts-lib__/resource_generation")```, where ```x``` can be any name that you would like.
-Then the following functions will be available to you:
+The the following functions are available to you:
 
-* ```x.item(...)``` - Resource Item
-* ```x.autoplace(...)``` - Autopalce Control
-* ```x.add_resource_to_planet(...)``` - Add Resource To Planet
-* ```x.ore(...)``` - Ore entity
+* ```mattslib.resource_generation.item(...)``` - Resource Item
+* ```mattslib.resource_generation.autoplace(...)``` - Autopalce Control
+* ```mattslib.resource_generation.add_resource_to_planet(...)``` - Add Resource To Planet
+* ```mattslib.resource_generation.ore(...)``` - Ore entity
 
 ### Resource Generation Functions
 
@@ -42,7 +41,6 @@ Then the following functions will be available to you:
     * custom_paths - Set to true if you wish to use custom graphic paths that dont follow the structure specified in this mod (optional)
     * custom_icon_path - Specifies the custom path for the ore icon (required if using custom_paths)
     * custom_ore_path - Specifies the custom path for the ore entity (required if using custom_paths)
-    * custom_hr_ore_path - Specifies the custom path for the high resolution ore entity (required if using custom_paths)
   * ore_properties - A table containing the following entries:
     * name - The name of the ore
     * order - Specifies the order in which your ore should be placed
@@ -61,12 +59,10 @@ Then the following functions will be available to you:
 ### Example Code
 This code gives an example of how to use the ore generation function:
 ```lua
-local matts_resource_gen = require("__matts-lib__/resource_generation")
-
-matts_resource_gen.item("example-mod", "example-ore", "a-a", 50, "raw-resource")
-matts_resource_gen.add_resource_to_planet("example-ore", "nauvis")
-matts_resource_gen.autoplace("example-ore", "a-a")
-matts_resource_gen.ore(
+mattslib.resource_generation.item("example-mod", "example-ore", "a-a", 50, "raw-resource")
+mattslib.resource_generation.add_resource_to_planet("example-ore", "nauvis")
+mattslib.resource_generation.autoplace("example-ore", "a-a")
+mattslib.resource_generation.ore(
   {
     mod_name = "example-mod",
     ore_path = "graphics/entity/resources"

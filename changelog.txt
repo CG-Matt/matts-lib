@@ -1,3 +1,13 @@
+Version: 0.6.1
+Date: 02.02.2025
+  Functions:
+    - The "resource_generation.lua" file is now located in the "modules" folder and its functions should now be accessed through "mattslib.resource_generation" instead of directly.
+    - The old "resource_generation.lua" file is not depricated and will be removed in the next version.
+    - Updated ore graphics code in the mattslib.resource_generation.ore, hr texture options have been removed and now replace the regular graphics.
+    - Added new modules "mattslib.recipe" and "mattslib.tech" which add helper functions to work with recipes and technologies respectively.
+  General:
+    - Updated readme.md.
+---------------------------------------------------------------------------------------------------
 Version: 0.6.0
 Date: 04.12.2024
   Functions:

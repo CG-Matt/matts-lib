@@ -1,3 +1,11 @@
+if not mattslib then
+	mattslib = {}
+end
+
+mattslib.resource_generation = require("modules.resource_generation")
+mattslib.tech = require("modules.technology")
+mattslib.recipe = require("modules.recipe")
+
 data:extend(
 {
 	{
