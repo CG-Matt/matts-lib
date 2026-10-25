@@ -1,0 +1,112 @@
+name: Release Mod
+
+on:
+  push:
+    branches: [main]
+    paths: [info.json]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish to Github and Factorio
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mod-release
+  cancel-in-progress: false
+
+jobs:
+  package:
+    name: Package Mod
+    runs-on: ubuntu-latest
+    outputs:
+      name: ${{ steps.package.outputs.name }}
+      version: ${{ steps.package.outputs.version }}
+      zip: ${{ steps.package.outputs.zip }}
+      artifact: ${{ steps.upload.outputs.artifact-id }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Build ZIP Package
+        id: package
+        run: python3 scripts/package.py
+
+      - name: Save Package
+        id: upload
+        uses: actions/upload-artifact@v7
+        with:
+          name: mod-${{ github.run_attempt }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
+
+  publish_github:
+    name: Publish to GitHub
+    needs: package
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'push' || inputs.publish)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v8
+        with:
+          artifact-ids: ${{ needs.package.outputs.artifact }}
+          path: dist
+
+      - name: Publish Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          MOD_NAME: ${{ needs.package.outputs.name }}
+          MOD_VERSION: ${{ needs.package.outputs.version }}
+          MOD_ZIP: ${{ needs.package.outputs.zip }}
+        run: python3 scripts/publish_github.py "$MOD_NAME" "$MOD_VERSION" "$MOD_ZIP"
+
+  publish_factorio:
+    name: Publish to Factorio
+    needs: package
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'push' || inputs.publish)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v8
+        with:
+          artifact-ids: ${{ needs.package.outputs.artifact }}
+          path: dist
+
+      - name: Install Python Dependencies
+        run: python3 -m pip install requests
+
+      - name: Publish Release
+        env:
+          FACTORIO_API_KEY: ${{ secrets.FACTORIO_API_KEY }}
+          MOD_NAME: ${{ needs.package.outputs.name }}
+          MOD_VERSION: ${{ needs.package.outputs.version }}
+          MOD_ZIP: ${{ needs.package.outputs.zip }}
+        run: python3 scripts/publish_factorio.py "$MOD_NAME" "$MOD_VERSION" "$MOD_ZIP"
