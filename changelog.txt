@@ -1,3 +1,14 @@
+Version: 0.7.0
+Date: 25.10.2026
+  Compatibility:
+    - Updated to Factorio version 2.1
+    - Removed obsolete icon_mipmaps property from generated resource items.
+  Functions:
+    - Fixed ore name prefixes not being applied by mattslib.resource_generation.ore.
+    - Fixed the default mining fluid amount not being applied when a mining fluid is specified.
+    - Fixed mattslib.tech.remove_recipe_unlock, remove_science_pack and remove_prerequisite not removing their respective entries.
+    - Fixed mattslib.tech.replace_prerequisite not updating the prerequisite.
+---------------------------------------------------------------------------------------------------
 Version: 0.6.1
 Date: 02.02.2025
   Functions:

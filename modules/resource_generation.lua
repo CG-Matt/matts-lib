@@ -15,7 +15,7 @@ matts_resource_generation.ore = function(mod_properties, ore_properties, autopla
 	if mod_properties.ore_path == nil then mod_properties.ore_path = "graphics/entity" end
 
 	-- Attaches prefix to internal name if one is supplied
-	if not mod_properties.prefix == nil then
+	if mod_properties.prefix ~= nil then
 		ore_properties.name = mod_properties.prefix .. "-" .. ore_properties.name
 	end
 
@@ -26,7 +26,9 @@ matts_resource_generation.ore = function(mod_properties, ore_properties, autopla
 	if ore_properties.result == nil then ore_properties.result = ore_properties.name end
 
 	-- Sets the default mining fluid amount to 10 if not provided
-	if not ore_properties.mining_fluid == nil and ore_properties.mining_fluid_amount == nil then ore_properties.mining_fluid_amount = 10 end
+	if ore_properties.fluid ~= nil and ore_properties.fluid_amount == nil then
+		ore_properties.fluid_amount = 10
+	end
 
 	-- Sets default multipliers
 	if autoplace_properties.regular_multiplier == nil then autoplace_properties.regular_multiplier = 1 end
@@ -109,7 +111,6 @@ matts_resource_generation.item = function(mod_name, ore_name, order, stack_size,
 		name = ore_name,
 		icon = "__" .. mod_name .. "__/graphics/icons/ores/" .. ore_name .. "/1.png",
 		icon_size = 64,
-		icon_mipmaps = 4,
 		pictures =
 		{
 			{ size = 64, filename = "__" .. mod_name .. "__/graphics/icons/ores/" .. ore_name .. "/1.png", scale = 0.25, mipmap_count = 4},

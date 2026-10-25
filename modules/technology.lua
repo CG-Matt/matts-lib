@@ -24,26 +24,34 @@ tech_utils.add_prerequisite = function(tech_name, prerequisite_name)
 end
 
 tech_utils.remove_recipe_unlock = function(tech_name, recipe_name)
-    for _, unlock in ipairs(data.raw.technology[tech_name].effects) do
-        if unlock.type == "unlock-recipe" and unlock.recipe == recipe_name then unlock = nil end
+    for idx, unlock in ipairs(data.raw.technology[tech_name].effects) do
+        if unlock.type == "unlock-recipe" and unlock.recipe == recipe_name then
+            table.remove(data.raw.technology[tech_name].effects, idx)
+        end
     end
 end
 
 tech_utils.remove_science_pack = function(tech_name, science_pack_name)
-    for _, pack in ipairs(data.raw.technology[tech_name].unit.ingredients) do
-        if pack[1] == science_pack_name then pack = nil end
+    for idx, pack in ipairs(data.raw.technology[tech_name].unit.ingredients) do
+        if pack[1] == science_pack_name then
+            table.remove(data.raw.technology[tech_name].unit.ingredients, idx)
+        end
     end
 end
 
 tech_utils.remove_prerequisite = function(tech_name, prerequisite_name)
-    for _, prerequisite in ipairs(data.raw.technology[tech_name].prerequisites) do
-        if prerequisite == prerequisite_name then prerequisite = nil end
+    for idx, prerequisite in ipairs(data.raw.technology[tech_name].prerequisites) do
+        if prerequisite == prerequisite_name then
+            table.remove(data.raw.technology[tech_name].prerequisites, idx)
+        end
     end
 end
 
 tech_utils.replace_prerequisite = function(tech_name, old_prerequisite, new_prerequisite)
-    for _, prerequisite in ipairs(data.raw.technology[tech_name].prerequisites) do
-        if prerequisite == old_prerequisite then prerequisite = new_prerequisite end
+    for idx, prerequisite in ipairs(data.raw.technology[tech_name].prerequisites) do
+        if prerequisite == old_prerequisite then
+            data.raw.technology[tech_name].prerequisites[idx] = new_prerequisite
+        end
     end
 end
 
