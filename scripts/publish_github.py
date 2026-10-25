@@ -25,7 +25,7 @@ def main():
         gh(
             'release', 'create', tag,
             '--target', os.environ['GITHUB_SHA'],
-            '--title', f'{name} {version}',
+            '--title', f'Release v{version}',
             '--notes-file', 'dist/release-notes.txt',
             '--draft',
         )

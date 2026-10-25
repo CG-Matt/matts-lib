@@ -3,6 +3,7 @@
 import json
 import os
 import re
+import textwrap
 import zipfile
 from pathlib import Path
 
@@ -46,6 +47,11 @@ def main():
             entry
         )
     )
+    notes = textwrap.dedent("\n".join(
+        line for line in notes.splitlines()
+        if not line.startswith(('Version:', 'Date:'))
+    )).strip()
+    
     Path(f'{OUTPUT_DIRECTORY}/release-notes.txt').write_text(notes + '\n')
 
     package_name = f"{name}_{version}"
